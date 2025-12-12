@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAV-A DONUTS - Freshly Drizzled Goodness!</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html, body {
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfbf8;
+            color: #333;
+        }
+        .hero-background {
+            background-image: url('donuters.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .section-padding {
+            padding-top: 6rem;
+            padding-bottom: 4rem;
+        }
+        .donut-image {
+            border-radius: 16px;
+            transform: perspective(1000px) rotateY(0deg) rotateX(5deg);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1), inset 0 0 15px rgba(255,255,255,0.3);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        .donut-card:hover .donut-image {
+            transform: perspective(1000px) rotateY(5deg) rotateX(5deg) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2), 0 10px 20px rgba(0,0,0,0.15), inset 0 0 20px rgba(255,255,255,0.4);
+        }
+        .order-button {
+            transform: perspective(1000px) rotateX(5deg);
+            box-shadow: 0 15px 25px rgba(139,69,19,0.25), 0 5px 10px rgba(139,69,19,0.15), inset 0 -5px 10px rgba(139,69,19,0.15);
+            transition: all 0.3s ease;
+        }
+        .order-button:hover {
+            transform: perspective(1000px) rotateX(0deg) translateY(-3px);
+            box-shadow: 0 20px 35px rgba(139,69,19,0.35), 0 10px 15px rgba(139,69,19,0.25), inset 0 -5px 15px rgba(139,69,19,0.25);
+        }
+        .nav-item {
+            position: relative;
+            padding: 0 1rem;
+        }
+        .nav-item:not(:last-child):after {
+            content: "";
+            position: absolute;
+            right: -0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 1rem;
+            width: 1px;
+            background-color: rgba(255,255,255,0.4);
+        }
+        .menu-bg {
+            background: linear-gradient(to bottom, #fefaf0, #fff);
+        }
+        .contact-bg {
+            background: linear-gradient(to bottom, #f8f4e9, #fff);
+        }
+        .logo-glow {
+            filter: drop-shadow(0 5px 8px rgba(139,69,19,0.3));
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+        }
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #f59e0b, #d97706);
+            border-radius: 2px;
+        }
+        .full-view-home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+        .full-view-menu {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 0;
+        }
+        .scrolldown-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: #b45309;
+            font-size: 2rem;
+        }
+        @keyframes bounce {
+            0%,20%,50%,80%,100% {transform: translateY(0) translateX(-50%);}
+            40% {transform: translateY(-20px) translateX(-50%);}
+            60% {transform: translateY(-10px) translateX(-50%);}
+        }
+        .menu-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        .menu-header h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #78350f;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+        .menu-header p {
+            font-size: 1.25rem;
+            color: #854d0e;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .menu-header::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 6px;
+            background: linear-gradient(to right, #f59e0b, #d97706);
+            border-radius: 3px;
+        }
+        .menu-header::after {
+            content: "🍩";
+            font-size: 2rem;
+            display: block;
+            margin-top: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {transform: scale(1);}
+            50% {transform: scale(1.1);}
+            100% {transform: scale(1);}
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+<!-- Navbar -->
+<nav class="fixed top-0 left-0 w-full bg-amber-800 shadow-md z-50 p-4">
+    <div class="container mx-auto flex justify-between items-center px-4">
+        <div class="text-2xl font-bold text-white flex items-center">
+            <i class="fas fa-donut mr-2 text-amber-200"></i>
+            LAV-A DONUTS
+        </div>
+        <ul class="flex space-x-2">
+            <li class="nav-item"><a href="#home" class="text-white hover:text-amber-200 font-medium transition duration-300 ease-in-out">Home</a></li>
+            <li class="nav-item"><a href="#menu" class="text-white hover:text-amber-200 font-medium transition duration-300 ease-in-out">Menu</a></li>
+            <li class="nav-item"><a href="#contact" class="text-white hover:text-amber-200 font-medium transition duration-300 ease-in-out">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Home Section -->
+<section id="home" class="hero-background full-view-home text-center relative">
+    <div class="absolute inset-0 bg-white/40 pointer-events-none"></div>
+    <div class="container mx-auto p-6 relative z-20">
+        <img src="lavalogo.png" alt="Holy Moly Donuts Logo" class="mx-auto mb-8 rounded-full shadow-xl border-4 border-amber-100 w-72 h-auto aspect-square object-cover logo-glow">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-amber-900 mb-6 leading-tight">
+            Indulge in <span class="text-orange-600">LAV-A DONUTS</span> Donuts!
+        </h1>
+        <p class="text-2xl md:text-3xl text-gray-800 mb-10 max-w-2xl mx-auto">
+            10 pcs mini donuts for as low as <span class="font-bold text-amber-700">₱75</span>!
+        </p>
+
+        <div class="flex flex-col md:flex-row justify-center gap-6 mt-10 mb-12 relative z-30">
+            <a href="#menu" class="order-button px-10 py-5 bg-amber-600 text-white text-xl font-bold rounded-full hover:bg-amber-700 transition-all duration-300 ease-in-out text-center">
+                <i class="fas fa-utensils mr-3"></i>View Our Menu
+            </a>
+            <a href="https://www.messenger.com/t/735111056354725" class="order-button px-10 py-5 bg-orange-600 text-white text-xl font-bold rounded-full hover:bg-orange-700 transition-all duration-300 ease-in-out text-center">
+                <i class="fas fa-shopping-cart mr-3"></i>Order Now!
+            </a>
+        </div>
+    </div>
+
+    <a href="#menu" class="scrolldown-indicator z-30">
+        <i class="fas fa-chevron-down"></i>
+    </a>
+</section>
+
+<!-- Menu Section -->
+<section id="menu" class="menu-bg full-view-menu py-16">
+    <div class="container mx-auto px-4">
+        <div class="menu-header">
+            <h2>Our Menu</h2>
+            <p>Freshly made mini donuts with fun and tasty flavors</p>
+        </div>
+
+        <h3 class="text-3xl font-semibold text-amber-700 mb-8 text-center">Mini Donuts Collection</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <div class="donut-card bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-4 flex flex-col items-center">
+                <div class="w-32 h-32 mb-4 rounded-xl overflow-hidden flex items-center justify-center">
+                    <img src="bavarias.png" class="w-full h-full object-cover donut-image">
+                </div>
+                <h3 class="text-xl font-semibold text-amber-800 mb-2">Bavarian</h3>
+                <p class="text-gray-600 text-center text-sm">Creamy bavarian flavoured donuts.</p>
+            </div>
+            <div class="donut-card bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-4 flex flex-col items-center">
+                <div class="w-32 h-32 mb-4 rounded-xl overflow-hidden flex items-center justify-center">
+                    <img src="chocos.jpg" class="w-full h-full object-cover donut-image">
+                </div>
+                <h3 class="text-xl font-semibold text-amber-800 mb-2">Chocolate</h3>
+                <p class="text-gray-600 text-center text-sm">Bite-sized delight with rich chocolate flavor.</p>
+            </div>
+            <div class="donut-card bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-4 flex flex-col items-center">
+                <div class="w-32 h-32 mb-4 rounded-xl overflow-hidden flex items-center justify-center">
+                    <img src="strawbs.jpg" class="w-full h-full object-cover donut-image">
+                </div>
+                <h3 class="text-xl font-semibold text-amber-800 mb-2">Strawberry</h3>
+                <p class="text-gray-600 text-center text-sm">Sweet strawberry flavor in a mini treat.</p>
+            </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="https://www.messenger.com/t/735111056354725" class="order-button px-8 py-4 bg-amber-600 text-white text-xl font-bold rounded-full hover:bg-amber-700 transition-all duration-300 ease-in-out inline-block">
+                <i class="fas fa-bolt mr-2"></i>Order Now!
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-bg py-16 section-padding">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold text-amber-800 mb-8 section-title">Get in Touch</h2>
+        <div class="max-w-xl mx-auto text-lg text-gray-700 leading-relaxed">
+            <p class="mb-6">Have questions or want to place a special order? We'd love to hear from you!</p>
+            <div class="mb-6 bg-white p-6 rounded-2xl shadow-md">
+                <p class="text-xl font-semibold text-amber-700 mb-2"><i class="fas fa-phone-alt mr-2"></i>Phone:</p>
+                <p class="text-gray-800 text-lg">0977 263 3716</p>
+            </div>
+            <div class="mb-6 bg-white p-6 rounded-2xl shadow-md">
+                <p class="text-xl font-semibold text-amber-700 mb-2"><i class="fas fa-envelope mr-2"></i>Email:</p>
+                <p class="text-gray-800 text-lg">info@lavadonuts.ph</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-md">
+                <p class="text-xl font-semibold text-amber-700 mb-4"><i class="fas fa-share-alt mr-2"></i>Find us on Social Media:</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="https://facebook.com" class="text-blue-600 text-3xl">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-amber-900 text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="#home" class="hover:text-amber-200">Home</a>
+            <a href="#menu" class="hover:text-amber-200">Menu</a>
+            <a href="#contact" class="hover:text-amber-200">Contact</a>
+        </div>
+        <p>&copy; 2025 LAV-A DONUTS. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
